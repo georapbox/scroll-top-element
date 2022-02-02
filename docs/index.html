@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>"Scroll to Top" custom element</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.4.0/styles/stackoverflow-dark.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>scroll-to-top</h1>
+    <p>Scroll down to reveal the "Back to Top" button.</p>
+
+    <scroll-to-top top-offset="200px">
+      Back to Top &uarr;
+    </scroll-to-top>
+
+    <h2>
+      Usage Example
+    </h2>
+
+    <h3>HTML</h3>
+<pre class="language-html"><code>&lt;scroll-to-top top-offset="200px" visible&gt;
+  Back to top
+&lt;/scroll-to-top&gt;</code></pre>
+
+    <h3>CSS</h3>
+<pre class="language-css"><code>/* Customize styling */
+
+scroll-to-top::part(button) {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  border-style: solid;
+  border-width: 1px;
+  color: #ffffff;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(100%);
+}
+
+scroll-to-top::part(button):hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+/* Customize button when its state is visible */
+scroll-to-top[visible]::part(button) {
+  transform: translateY(0);
+}
+</code></pre>
+
+    <a class="fork" href="https://github.com/georapbox/scroll-to-top" target="_blank" rel="noreferrer noopener">
+      Fork it on <img src="img/github.svg" width="30" height="30" alt="Github">
+    </a>
+  </div>
+
+  <script src="//unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js"></script>
+  <script src="../src/scroll-to-top.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());
+  </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  min-height: 3000px;
+  background-color: #ececec;
+  color: #333333;
+  padding: 1.5rem 1rem;
+}
+
+h1, h2, h3 {
+  font-weight: 400;
+}
+
+h1, h2, p {
+  margin-bottom: 1rem;
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+.arrow {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+pre:not(:last-child) {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+pre code {
+  border-radius: 0.25rem;
+}
+
+.container {
+  position: relative;
+  padding: 1.5rem 2rem;
+  margin: 0 auto;
+  max-width: 1024px;
+  border-radius: 0.25rem;
+  background-color: #ffffff;
+  box-shadow: 3px 3px 10px 1px rgba(0 0 0 / 0.1);
+}
+
+.fork {
+  display: flex;
+  align-items: center;
+  color: #000;
+  text-decoration: none;
+}
+
+.fork img {
+  margin-left: 0.25rem;
+}
+
+scroll-to-top::part(button) {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  border-style: solid;
+  border-width: 1px;
+  color: #ffffff;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(100%);
+}
+
+scroll-to-top::part(button):hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+scroll-to-top[visible]::part(button) {
+  transform: translateY(0);
+}
