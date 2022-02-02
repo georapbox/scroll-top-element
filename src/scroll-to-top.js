@@ -44,15 +44,15 @@ window.customElements.define('scroll-to-top', class ScrollToTop extends HTMLElem
     shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
-  get topOffset() {
-    return this.getAttribute('top-offset') || '50vh';
+  get visibleAfter() {
+    return this.getAttribute('visible-after') || '50vh';
   }
 
-  set topOffset(value) {
+  set visibleAfter(value) {
     if (typeof value !== 'string') {
       return;
     }
-    this.setAttribute('top-offset', value);
+    this.setAttribute('visible-after', value);
   }
 
   get visible() {
@@ -74,7 +74,7 @@ window.customElements.define('scroll-to-top', class ScrollToTop extends HTMLElem
     });
   }
 
-  setTopOffset(value) {
+  setContainerHeight(value) {
     if (typeof value === 'string' && this.$container) {
       this.$container.style.height = value;
     }
@@ -84,18 +84,16 @@ window.customElements.define('scroll-to-top', class ScrollToTop extends HTMLElem
     this.$container = this.shadowRoot.querySelector('div');
     this.$button = this.shadowRoot.querySelector('button');
 
-    this.setTopOffset(this.topOffset);
+    this.setContainerHeight(this.visibleAfter);
 
-    if (!this.visible) {
-      try {
-        this.observer = new IntersectionObserver(([entry]) => {
-          this.visible = !entry.isIntersecting;
-        });
+    try {
+      this.observer = new IntersectionObserver(([entry]) => {
+        this.visible = !entry.isIntersecting;
+      });
 
-        this.observer.observe(this.$container);
-      } catch (err) {
-        console.error(err);
-      }
+      this.observer.observe(this.$container);
+    } catch (err) {
+      console.error(err);
     }
 
     this.$button.addEventListener('click', this.onClick);
@@ -111,12 +109,12 @@ window.customElements.define('scroll-to-top', class ScrollToTop extends HTMLElem
   }
 
   attributeChangedCallback(name, _, newValue) {
-    if (name === 'top-offset') {
-      this.setTopOffset(newValue);
+    if (name === 'visible-after') {
+      this.setContainerHeight(newValue);
     }
   }
 
   static get observedAttributes() {
-    return ['top-offset'];
+    return ['visible-after'];
   }
 });

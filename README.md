@@ -6,8 +6,7 @@ A "Scroll to Top" custom element that is revealed after the user has scrolled do
 ## Attributes/Properties
 | Name | Default | Description |
 | ---- | ------- | ----------- |
-| `top-offset` | `"50vh"` | Optional. It defines the distance the user needs to scroll from top so that the button is revealed. |
-| `visible` | - | Optional. If set, the button is always visible by default. |
+| `visible-after` | `"50vh"` | Optional. It defines the distance the user needs to scroll from top so that the button is revealed. The value provided must have a valid absolute or relative length unit, eg `px`, `rem`, `vh`, etc. |
 
 ## Usage
 
@@ -17,10 +16,7 @@ A "Scroll to Top" custom element that is revealed after the user has scrolled do
 <scroll-to-top></scroll-to-top>
 
 <!-- Customize button's text content and properties -->
-<scroll-to-top 
-  top-offset="200px" 
-  visible
->
+<scroll-to-top visible-after="200px">
   Back to top
 </scroll-to-top>
 ```
@@ -31,9 +27,7 @@ A "Scroll to Top" custom element that is revealed after the user has scrolled do
 
 scroll-to-top::part(button) {
   background-color: #0d6efd;
-  border-color: #0d6efd;
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid #0d6efd;
   color: #ffffff;
   padding: 0.375rem 0.75rem;
   border-radius: 0.25rem;
