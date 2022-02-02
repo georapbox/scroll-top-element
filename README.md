@@ -1,7 +1,7 @@
 # scroll-to-top
 
 A "Scroll to Top" custom element that is revealed after the user has scrolled down.  
-[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) API is used under the hood to detect when the button willbe revealed.
+[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) API is used under the hood to detect when the button will be revealed.
 
 ## Attributes/Properties
 | Name | Default | Description |
