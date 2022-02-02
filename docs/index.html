@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>"Scroll to Top" custom element</title>
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="styles/main.css">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,8 +17,8 @@
     <h1>scroll-to-top</h1>
     <p>Scroll down to reveal the "Back to Top" button.</p>
 
-    <scroll-to-top top-offset="200px">
-      Back to Top &uarr;
+    <scroll-to-top visible-after="300px">
+      Back to top &uarr;
     </scroll-to-top>
 
     <h2>
@@ -26,7 +26,7 @@
     </h2>
 
     <h3>HTML</h3>
-<pre class="language-html"><code>&lt;scroll-to-top top-offset="200px" visible&gt;
+<pre class="language-html"><code>&lt;scroll-to-top visible-after="200px"&gt;
   Back to top
 &lt;/scroll-to-top&gt;</code></pre>
 
@@ -35,9 +35,7 @@
 
 scroll-to-top::part(button) {
   background-color: #0d6efd;
-  border-color: #0d6efd;
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid #0d6efd;
   color: #ffffff;
   padding: 0.375rem 0.75rem;
   border-radius: 0.25rem;
@@ -62,10 +60,8 @@ scroll-to-top[visible]::part(button) {
     </a>
   </div>
 
+  <script src="../src/scroll-to-top.js" type="module"></script>
   <script src="//unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js"></script>
-  <script src="../src/scroll-to-top.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());
-  </script>
+  <script>document.addEventListener('DOMContentLoaded', hljs.highlightAll);</script>
 </body>
 </html>
