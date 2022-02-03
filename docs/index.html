@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>"Scroll to Top" Web Component</title>
+  <title>&lt;scroll-to-top&gt; element</title>
   <link rel="stylesheet" href="styles/main.css">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,16 +14,13 @@
 </head>
 <body>
   <div class="container">
-    <h1>scroll-to-top</h1>
-    <p>Scroll down to reveal the "Back to Top" button.</p>
+    <h1>&lt;scroll-to-top&gt; element</h1>
 
-    <scroll-to-top visible-after="300px">
-      Back to top &uarr;
-    </scroll-to-top>
+    <h2>Demo</h2>
 
-    <h2>
-      Usage Example
-    </h2>
+    <p><a href="#" id="scroll-down">Scroll down</a> to reveal the "Back to Top" button.</p>
+
+    <h2>Usage Example</h2>
 
     <h3>HTML</h3>
 <pre class="language-html"><code>&lt;scroll-to-top visible-after="200px"&gt;
@@ -34,6 +31,7 @@
 <pre class="language-css"><code>/* Customize styling */
 
 scroll-to-top::part(button) {
+  /* Custom stylings for button */
   background-color: #0d6efd;
   border: 1px solid #0d6efd;
   color: #ffffff;
@@ -41,27 +39,59 @@ scroll-to-top::part(button) {
   border-radius: 0.25rem;
   font-size: 1rem;
   transition: all 0.3s ease-in-out;
-  transform: translateY(100%);
 }
 
 scroll-to-top::part(button):hover {
+  /* Custom stylings for button's hover state */
   background-color: #0b5ed7;
   border-color: #0a58ca;
 }
 
-/* Customize button when its state is visible */
-scroll-to-top[visible]::part(button) {
-  transform: translateY(0);
+scroll-to-top[hidden]::part(button) {
+  /* Custom stylings for hidden state */
+  transform: translateY(calc(100% + 16px));
 }
 </code></pre>
 
-    <a class="fork" href="https://github.com/georapbox/scroll-to-top" target="_blank" rel="noreferrer noopener">
-      Fork it on <img src="img/github.svg" width="30" height="30" alt="Github">
-    </a>
+    <h2>Source</h2>
+
+    <p>
+      Source code can be found in <a href="https://github.com/georapbox/scroll-to-top" target="_blank" rel="noreferrer noopener">Github repository</a>.
+    </p>
+
+    <h2>License</h2>
+
+    <p>
+      <a href="https://georapbox.mit-license.org/@2022" target="_blank" rel="noreferrer noopener">The MIT License (MIT)</a>
+    </p>
   </div>
 
-  <script src="../src/scroll-to-top.js" type="module"></script>
+  <scroll-to-top visible-after="300px">
+    Back to top &uarr;
+  </scroll-to-top>
+
   <script src="//unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js"></script>
-  <script>document.addEventListener('DOMContentLoaded', hljs.highlightAll);</script>
+
+  <script type="module">
+    import { ScrollToTop } from '../src/scroll-to-top.js';
+
+    if (!window.customElements.get('scroll-to-top')) {
+      window.customElements.define('scroll-to-top', ScrollToTop);
+    }
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      hljs.highlightAll();
+
+      document.getElementById('scroll-down').addEventListener('click', evt => {
+        evt.preventDefault();
+        document.documentElement.scrollTo({
+          top: 1000,
+          behavior: 'smooth'
+        })
+      });
+    });
+  </script>
 </body>
 </html>
