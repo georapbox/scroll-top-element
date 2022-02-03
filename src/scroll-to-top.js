@@ -15,14 +15,12 @@ template.innerHTML = `
       position: fixed;
       bottom: 16px;
       right: 16px;
-      opacity: 0;
-      visibility: hidden;
       cursor: pointer;
     }
 
-    :host([visible]) button {
-      opacity: 1;
-      visibility: visible;
+    :host([hidden]) button {
+      opacity: 0;
+      visibility: hidden;
     }
   </style>
 
@@ -31,7 +29,7 @@ template.innerHTML = `
   </div>
 `;
 
-window.customElements.define('scroll-to-top', class ScrollToTop extends HTMLElement {
+export class ScrollToTop extends HTMLElement {
   constructor() {
     super();
 
@@ -55,18 +53,6 @@ window.customElements.define('scroll-to-top', class ScrollToTop extends HTMLElem
     this.setAttribute('visible-after', value);
   }
 
-  get visible() {
-    return this.getAttribute('visible') !== null;
-  }
-
-  set visible(value) {
-    if (value) {
-      this.setAttribute('visible', '');
-    } else {
-      this.removeAttribute('visible');
-    }
-  }
-
   onClick() {
     document.documentElement.scrollTo({
       top: 0,
@@ -88,7 +74,7 @@ window.customElements.define('scroll-to-top', class ScrollToTop extends HTMLElem
 
     try {
       this.observer = new IntersectionObserver(([entry]) => {
-        this.visible = !entry.isIntersecting;
+        this.hidden = entry.isIntersecting;
       });
 
       this.observer.observe(this.$container);
@@ -117,4 +103,4 @@ window.customElements.define('scroll-to-top', class ScrollToTop extends HTMLElem
   static get observedAttributes() {
     return ['visible-after'];
   }
-});
+}
