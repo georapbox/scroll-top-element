@@ -53,17 +53,6 @@ pre code {
   box-shadow: 3px 3px 10px 1px rgba(0 0 0 / 0.1);
 }
 
-.fork {
-  display: flex;
-  align-items: center;
-  color: #000;
-  text-decoration: none;
-}
-
-.fork img {
-  margin-left: 0.25rem;
-}
-
 a {
   color: #0d6efd;
   text-decoration: underline;
@@ -86,6 +75,8 @@ scroll-to-top::part(button) {
   border-radius: 0.25rem;
   font-size: 1rem;
   transition: all 0.3s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 scroll-to-top::part(button):hover {

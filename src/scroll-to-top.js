@@ -25,7 +25,7 @@ template.innerHTML = `
   </style>
 
   <div class="container" part="container">
-    <button part="button"><slot>Scroll to Top</slot></button>
+    <button part="button"><slot>Scroll to top</slot></button>
   </div>
 `;
 
@@ -67,7 +67,7 @@ export class ScrollToTop extends HTMLElement {
   }
 
   connectedCallback() {
-    this.$container = this.shadowRoot.querySelector('div');
+    this.$container = this.shadowRoot.querySelector('.container');
     this.$button = this.shadowRoot.querySelector('button');
 
     this.setContainerHeight(this.visibleAfter);
@@ -75,6 +75,13 @@ export class ScrollToTop extends HTMLElement {
     try {
       this.observer = new IntersectionObserver(([entry]) => {
         this.hidden = entry.isIntersecting;
+
+        this.dispatchEvent(new CustomEvent('scroll-to-top:visibilitychange', {
+          bubbles: true,
+          detail: {
+            visible: !entry.isIntersecting
+          }
+        }));
       });
 
       this.observer.observe(this.$container);
@@ -102,5 +109,15 @@ export class ScrollToTop extends HTMLElement {
 
   static get observedAttributes() {
     return ['visible-after'];
+  }
+
+  static defineCustomElement(elementName = 'scroll-to-top') {
+    try {
+      if (!window.customElements.get(elementName)) {
+        window.customElements.define(elementName, ScrollToTop);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
 }

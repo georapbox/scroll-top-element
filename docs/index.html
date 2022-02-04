@@ -70,28 +70,27 @@ scroll-to-top[hidden]::part(button) {
     Back to top &uarr;
   </scroll-to-top>
 
-  <script src="//unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js"></script>
-
   <script type="module">
     import { ScrollToTop } from '../src/scroll-to-top.js';
 
-    if (!window.customElements.get('scroll-to-top')) {
-      window.customElements.define('scroll-to-top', ScrollToTop);
-    }
-  </script>
+    ScrollToTop.defineCustomElement();
+    ScrollToTop.defineCustomElement();
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      hljs.highlightAll();
-
-      document.getElementById('scroll-down').addEventListener('click', evt => {
-        evt.preventDefault();
-        document.documentElement.scrollTo({
-          top: 1000,
-          behavior: 'smooth'
-        })
-      });
+    document.addEventListener('scroll-to-top:visibilitychange', evt => {
+      console.log('event.detail ->', evt.detail);
     });
+
+    document.getElementById('scroll-down').addEventListener('click', evt => {
+      evt.preventDefault();
+      document.documentElement.scrollTo({
+        top: 1000,
+        behavior: 'smooth'
+      })
+    });
+
+    document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());
   </script>
+
+  <script src="//unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js" defer></script>
 </body>
 </html>
