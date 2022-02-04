@@ -54,7 +54,7 @@ scroll-to-top[hidden]::part(button) {
 
 ## Static methods
 
-### defineCustomElement([elementName])
+### ScrollToTop.defineCustomElement([elementName])
 
 Defines/registers the custom element with the name provided. If no name is provided, the default name is used. The method checks if the element is already defined, hence will skip trying to redefine it.
 
