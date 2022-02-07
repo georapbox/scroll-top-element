@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>&lt;scroll-to-top&gt; element</title>
+  <title>&lt;scroll-top&gt; element</title>
   <link rel="stylesheet" href="styles/main.css">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>&lt;scroll-to-top&gt; element</h1>
+    <h1>&lt;scroll-top&gt; element</h1>
 
     <h2>Demo</h2>
 
@@ -23,14 +23,14 @@
     <h2>Usage Example</h2>
 
     <h3>HTML</h3>
-<pre class="language-html"><code>&lt;scroll-to-top visible-after="200px"&gt;
+<pre class="language-html"><code>&lt;scroll-top visible-after="200px"&gt;
   Back to top
-&lt;/scroll-to-top&gt;</code></pre>
+&lt;/scroll-top&gt;</code></pre>
 
     <h3>CSS</h3>
 <pre class="language-css"><code>/* Customize styling */
 
-scroll-to-top::part(button) {
+scroll-top::part(button) {
   /* Custom stylings for button */
   background-color: #0d6efd;
   border: 1px solid #0d6efd;
@@ -41,13 +41,13 @@ scroll-to-top::part(button) {
   transition: all 0.3s ease-in-out;
 }
 
-scroll-to-top::part(button):hover {
+scroll-top::part(button):hover {
   /* Custom stylings for button's hover state */
   background-color: #0b5ed7;
   border-color: #0a58ca;
 }
 
-scroll-to-top[hidden]::part(button) {
+scroll-top[hidden]::part(button) {
   /* Custom stylings for hidden state */
   transform: translateY(calc(100% + 16px));
 }
@@ -56,7 +56,7 @@ scroll-to-top[hidden]::part(button) {
     <h2>Source</h2>
 
     <p>
-      Source code can be found in <a href="https://github.com/georapbox/scroll-to-top" target="_blank" rel="noreferrer noopener">Github repository</a>.
+      Source code can be found in <a href="https://github.com/georapbox/scroll-top" target="_blank" rel="noreferrer noopener">Github repository</a>.
     </p>
 
     <h2>License</h2>
@@ -66,16 +66,16 @@ scroll-to-top[hidden]::part(button) {
     </p>
   </div>
 
-  <scroll-to-top visible-after="300px">
+  <scroll-top visible-after="300px">
     Back to top &uarr;
-  </scroll-to-top>
+  </scroll-top>
 
   <script type="module">
-    import { ScrollToTop } from '../src/scroll-to-top.js';
+    import { ScrollTop } from '../src/scroll-top.js';
 
-    ScrollToTop.defineCustomElement();
+    ScrollTop.defineCustomElement();
 
-    document.addEventListener('scroll-to-top:visibilitychange', evt => {
+    document.addEventListener('scroll-top:visibilitychange', evt => {
       console.log('event.detail ->', evt.detail);
     });
 

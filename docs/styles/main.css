@@ -63,11 +63,11 @@ a:hover {
 }
 
 /* Component custom styling */
-scroll-to-top:not(:defined) {
+scroll-top:not(:defined) {
   display: none;
 }
 
-scroll-to-top::part(button) {
+scroll-top::part(button) {
   background-color: #0d6efd;
   border: 1px solid #0d6efd;
   color: #ffffff;
@@ -79,11 +79,11 @@ scroll-to-top::part(button) {
   -moz-appearance: none;
 }
 
-scroll-to-top::part(button):hover {
+scroll-top::part(button):hover {
   background-color: #0b5ed7;
   border-color: #0a58ca;
 }
 
-scroll-to-top[hidden]::part(button) {
+scroll-top[hidden]::part(button) {
   transform: translateY(calc(100% + 16px));
 }

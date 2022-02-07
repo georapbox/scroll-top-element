@@ -29,7 +29,7 @@ template.innerHTML = `
   </div>
 `;
 
-export class ScrollToTop extends HTMLElement {
+export class ScrollTop extends HTMLElement {
   constructor() {
     super();
 
@@ -76,7 +76,7 @@ export class ScrollToTop extends HTMLElement {
       this.observer = new IntersectionObserver(([entry]) => {
         this.hidden = entry.isIntersecting;
 
-        this.dispatchEvent(new CustomEvent('scroll-to-top:visibilitychange', {
+        this.dispatchEvent(new CustomEvent('scroll-top:visibilitychange', {
           bubbles: true,
           detail: {
             visible: !entry.isIntersecting
@@ -111,10 +111,10 @@ export class ScrollToTop extends HTMLElement {
     return ['visible-after'];
   }
 
-  static defineCustomElement(elementName = 'scroll-to-top') {
+  static defineCustomElement(elementName = 'scroll-top') {
     try {
       if (!window.customElements.get(elementName)) {
-        window.customElements.define(elementName, ScrollToTop);
+        window.customElements.define(elementName, ScrollTop);
       }
     } catch (err) {
       console.error(err);

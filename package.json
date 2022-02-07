@@ -1,5 +1,5 @@
 {
-  "name": "scroll-to-top",
+  "name": "scroll-top",
   "version": "1.0.0",
   "description": "Scroll to top custom element that is revealed after the user has scrolled down.",
   "main": "src/sroll-to-top.js",
@@ -16,11 +16,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/georapbox/scroll-to-top.git"
+    "url": "git+https://github.com/georapbox/scroll-top.git"
   },
-  "homepage": "https://github.com/georapbox/scroll-to-top#readme",
+  "homepage": "https://github.com/georapbox/scroll-top#readme",
   "bugs": {
-    "url": "https://github.com/georapbox/scroll-to-top/issues"
+    "url": "https://github.com/georapbox/scroll-top/issues"
   },
   "devDependencies": {
     "eslint": "~8.8.0"
