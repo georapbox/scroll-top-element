@@ -40,6 +40,8 @@ export class ScrollTop extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: 'open' });
 
     shadowRoot.appendChild(template.content.cloneNode(true));
+
+    this.onClick = this.onClick.bind(this);
   }
 
   get visibleAfter() {
@@ -53,11 +55,39 @@ export class ScrollTop extends HTMLElement {
     this.setAttribute('visible-after', value);
   }
 
+  get smoothScrolling() {
+    return this.getAttribute('smooth-scrolling');
+  }
+
+  set smoothScrolling(value) {
+    if (value) {
+      this.setAttribute('smooth-scrolling', '');
+    } else {
+      this.removeAttribute('smooth-scrolling');
+    }
+  }
+
+  get topOffset() {
+    return this.getAttribute('top-offset');
+  }
+
+  set topOffset(value) {
+    if (typeof value !== 'number') {
+      return;
+    }
+    this.setAttribute('top-offset', value);
+  }
+
   onClick() {
-    document.documentElement.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    const opts = {
+      top: Number(this.topOffset) || 0
+    };
+
+    if (this.getAttribute('smooth-scrolling') !== null) {
+      opts.behavior = 'smooth';
+    }
+
+    document.documentElement.scrollTo(opts);
   }
 
   setContainerHeight(value) {

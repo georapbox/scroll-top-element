@@ -21,7 +21,7 @@ window.customElements.define('scroll-top', ScrollTop);
 <scroll-top></scroll-top>
 
 <!-- Customize button's text content and properties -->
-<scroll-top visible-after="200px">
+<scroll-top visible-after="200px" smooth-scrolling>
   Back to top
 </scroll-top>
 ```
@@ -47,14 +47,18 @@ scroll-top[hidden]::part(button) {
 }
 ```
 
-## Attributes
-| Name | Default | Description |
-| ---- | ------- | ----------- |
-| `visible-after` | `"50vh"` | Optional. It defines the distance the user needs to scroll from top so that the button is revealed. The value provided must have a valid absolute or relative length unit, eg `px`, `rem`, `vh`, etc. |
+## Properties
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `visibleAfter` (reflects to `visible-after` attribute) | `String` | "50vh" | Optional. It defines the distance the user needs to scroll from top so that the button is revealed. The value provided must have a valid absolute or relative length unit, eg `px`, `rem`, `vh`, etc. |
+| `smoothScrolling` (reflects to `smooth-scrolling` attribute) | `Boolean` | `false` | Optional. Specifies whether the scrolling should animate smoothly, or happen instantly in a single jump which is the default behavior. |
+| `topOffset` (reflects to `top-offset` attribute) | `Number` | 0 | Optional. Specifies the number of pixels along the Y axis to scroll the window. |
+
+All properties reflect their values as HTML attributes to keep the element's DOM representation in sync with its JavaScript state.
 
 ## Static methods
 
-### ScrollTop.defineCustomElement([elementName])
+### ScrollTop.defineCustomElement(elementName='scroll-top')
 
 Defines/registers the custom element with the name provided. If no name is provided, the default name is used. The method checks if the element is already defined, hence will skip trying to redefine it.
 

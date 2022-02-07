@@ -37,9 +37,8 @@ pre:not(:last-child) {
 
 pre {
   overflow-x: auto;
-}
-
-pre code {
+  background-color: #1c1b1b;
+  color: #ffffff;
   border-radius: 0.25rem;
 }
 
