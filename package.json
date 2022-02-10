@@ -1,20 +1,23 @@
 {
   "name": "scroll-top",
   "version": "1.0.0",
-  "description": "Scroll to top custom element that is revealed after the user has scrolled down.",
-  "main": "lib/sroll-to-top.js",
+  "description": "A custom element that scrolls to the top of the page.",
+  "main": "sroll-top.js",
   "type": "module",
-  "module": "lib/sroll-to-top.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "module": "sroll-top.js",
   "scripts": {
-    "lint": "eslint lib/**",
-    "copy": "node scripts/copy.js",
-    "prepare": "husky install"
+    "lint": "eslint scroll-top.js",
+    "demo": "npx http-server ."
   },
-  "keywords": [],
-  "author": "George Raptis<georapbox@gmail.com>",
+  "keywords": [
+    "custom element",
+    "web component",
+    "scroll to top"
+  ],
+  "author": {
+    "name": "George Raptis",
+    "email": "georapbox@gmail.com"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -25,8 +28,7 @@
     "url": "https://github.com/georapbox/scroll-top/issues"
   },
   "devDependencies": {
-    "eslint": "~8.8.0",
-    "husky": "~7.0.4"
+    "eslint": "~8.8.0"
   },
   "engines": {
     "node": ">=14.0.0",

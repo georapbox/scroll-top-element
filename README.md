@@ -1,6 +1,6 @@
 # &lt;scroll-top&gt; element
 
-"Scroll to top" custom element that is revealed after the user has scrolled down. [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) API is used under the hood to detect when the element will be revealed.
+A custom element that scrolls to the top of the page. The element is not visible until the user scrolls down a specified amount of pixels. [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) API is used under the hood to detect when the element will be visible.
 
 Demo page: https://georapbox.github.io/scroll-top/
 
