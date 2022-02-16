@@ -25,7 +25,7 @@ template.innerHTML = `
   </style>
 
   <div class="container" part="container">
-    <button part="button"><slot>Scroll to top</slot></button>
+    <button type="button" part="button"><slot>Scroll to top</slot></button>
   </div>
 `;
 
