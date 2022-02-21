@@ -142,12 +142,8 @@ export class ScrollTop extends HTMLElement {
   }
 
   static defineCustomElement(elementName = 'scroll-top') {
-    try {
-      if (!window.customElements.get(elementName)) {
-        window.customElements.define(elementName, ScrollTop);
-      }
-    } catch (err) {
-      console.error(err);
+    if (typeof window !== 'undefined' && !window.customElements.get(elementName)) {
+      window.customElements.define(elementName, ScrollTop);
     }
   }
 }
