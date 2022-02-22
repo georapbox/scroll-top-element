@@ -56,7 +56,7 @@ export class ScrollTop extends HTMLElement {
   }
 
   get smoothScrolling() {
-    return this.getAttribute('smooth-scrolling');
+    return this.hasAttribute('smooth-scrolling');
   }
 
   set smoothScrolling(value) {
@@ -83,7 +83,7 @@ export class ScrollTop extends HTMLElement {
       top: Number(this.topOffset) || 0
     };
 
-    if (this.getAttribute('smooth-scrolling') !== null) {
+    if (this.smoothScrolling) {
       opts.behavior = 'smooth';
     }
 
