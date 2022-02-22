@@ -1,6 +1,6 @@
 const template = document.createElement('template');
 
-template.innerHTML = `
+template.innerHTML = /*template*/`
   <style>
     :host {
       all: initial;
