@@ -1,8 +1,13 @@
+[demo]: https://georapbox.github.io/scroll-top-element/
+[support]: https://caniuse.com/#feat=custom-elementsv1
+[polyfill]: https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements
+[license]: https://georapbox.mit-license.org/@2022
+
 # &lt;scroll-top&gt; element
 
 A custom element that scrolls to the top of the page. The element is not visible until the user scrolls down a specified amount of pixels. [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) API is used under the hood to detect when the element will be visible.
 
-Demo page: https://georapbox.github.io/scroll-top-element/
+[API documentation](#api) &bull; [Demo][demo]
 
 ## Usage
 
@@ -49,18 +54,20 @@ scroll-top[hidden]::part(button) {
 }
 ```
 
-## Properties
-| Name | Type | Default | Description |
-| ---- | ---- | ------- | ----------- |
-| `visibleAfter` (reflects to `visible-after` attribute) | `String` | "50vh" | Optional. It defines the distance the user needs to scroll from top so that the button is revealed. The value provided must have a valid absolute or relative length unit, eg `px`, `rem`, `vh`, etc. |
-| `smoothScrolling` (reflects to `smooth-scrolling` attribute) | `Boolean` | `false` | Optional. Specifies whether the scrolling should animate smoothly, or happen instantly in a single jump which is the default behavior. |
-| `topOffset` (reflects to `top-offset` attribute) | `Number` | 0 | Optional. Specifies the number of pixels along the Y axis to scroll the window. |
+## API
+
+### Properties/Attributes
+| Property name | Attribute name | Type | Default | Description |
+| ------------- | -------------- | ---- | ------- | ----------  |
+| `visibleAfter` | `visible-after` | String | `"50vh"` | Optional. It defines the distance the user needs to scroll from top so that the button is revealed. The value provided must have a valid absolute or relative length unit, eg `px`, `rem`, `vh`, etc. |
+| `smoothScrolling` | `smooth-scrolling` | Boolean | `false` | Optional. Specifies whether the scrolling should animate smoothly, or happen instantly in a single jump which is the default behavior. |
+| `topOffset` | `top-offset` | Number | `0` | Optional. Specifies the number of pixels along the Y axis to scroll the window. |
 
 All properties reflect their values as HTML attributes to keep the element's DOM representation in sync with its JavaScript state.
 
-## Static methods
+### Static methods
 
-### ScrollTop.defineCustomElement(elementName='scroll-top')
+#### ScrollTop.defineCustomElement(elementName='scroll-top')
 
 Defines/registers the custom element with the name provided. If no name is provided, the default name is used. The method checks if the element is already defined, hence will skip trying to redefine it.
 
@@ -68,7 +75,7 @@ Defines/registers the custom element with the name provided. If no name is provi
 | ----- | ---- | ------- | ----------- |
 | elementName | `string` | `scroll-top` | Name for the new custom element |
 
-## Events
+### Events
 
 Every time the visibility of the element changes a `scroll-top:visibilitychange` event is dispatched from the <scroll-top> element:
 
@@ -87,9 +94,6 @@ Browsers without native [custom element support][support] require a [polyfill][p
 - Microsoft Edge
 - Safari
 
-[support]: https://caniuse.com/#feat=custom-elementsv1
-[polyfill]: https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements
-
 ## License
 
-[The MIT License (MIT)](https://georapbox.mit-license.org/@2022)
+[The MIT License (MIT)][license]
