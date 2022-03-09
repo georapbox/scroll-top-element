@@ -11,6 +11,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.4.0/styles/stackoverflow-dark.min.css">
   <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #303942;
+      --link-color: #1a73e8;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #202125;
+        --text-color: #cccccc;
+        --link-color: #8ab4f8;
+      }
+    }
+
     *,
     *::before,
     *::after {
@@ -21,9 +35,9 @@
     body {
       font-family: 'Open Sans', sans-serif;
       min-height: 3000px;
-      background-color: #ececec;
-      color: #333333;
-      padding: 1.5rem 1rem;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      padding: 1rem;
     }
 
     h1, h2, h3 {
@@ -35,7 +49,7 @@
     }
 
     h3 {
-      margin-bottom: 0;
+      margin-bottom: 0.25rem;
     }
 
     .arrow {
@@ -53,25 +67,31 @@
       background-color: #1c1b1b;
       color: #ffffff;
       border-radius: 0.25rem;
+      border: 1px solid #3d3d3d;
     }
 
     .container {
-      position: relative;
-      padding: 1.5rem 2rem;
       margin: 0 auto;
       max-width: 768px;
-      border-radius: 0.25rem;
-      background-color: #ffffff;
-      box-shadow: 3px 3px 10px 1px rgba(0 0 0 / 0.1);
     }
 
     a {
-      color: #0d6efd;
+      color: var(--link-color);
       text-decoration: underline;
     }
 
-    a:hover {
-      color: #0a58ca;
+    @media screen and (max-width: 414px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+      }
+
+      h3 {
+        font-size: 0.9rem;
+      }
     }
 
     /* Component custom styling */
