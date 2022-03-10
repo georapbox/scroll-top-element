@@ -33,15 +33,9 @@ export class ScrollTop extends HTMLElement {
   constructor() {
     super();
 
-    this.observer = null;
-    this.$container = null;
-    this.$button = null;
-
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-
-    shadowRoot.appendChild(template.content.cloneNode(true));
-
-    this.onClick = this.onClick.bind(this);
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this._onClick = this._onClick.bind(this);
   }
 
   get visibleAfter() {
@@ -78,21 +72,13 @@ export class ScrollTop extends HTMLElement {
     this.setAttribute('top-offset', value);
   }
 
-  onClick() {
-    const opts = {
-      top: Number(this.topOffset) || 0
-    };
-
-    if (this.smoothScrolling) {
-      opts.behavior = 'smooth';
-    }
-
-    document.documentElement.scrollTo(opts);
+  static get observedAttributes() {
+    return ['visible-after'];
   }
 
-  setContainerHeight(value) {
-    if (typeof value === 'string' && this.$container) {
-      this.$container.style.height = value;
+  attributeChangedCallback(name, _, newValue) {
+    if (name === 'visible-after') {
+      this._setContainerHeight(newValue);
     }
   }
 
@@ -100,7 +86,10 @@ export class ScrollTop extends HTMLElement {
     this.$container = this.shadowRoot.querySelector('.container');
     this.$button = this.shadowRoot.querySelector('button');
 
-    this.setContainerHeight(this.visibleAfter);
+    this._setContainerHeight(this.visibleAfter);
+    this._upgradeProperty('visibleAfter');
+    this._upgradeProperty('smoothScrolling');
+    this._upgradeProperty('topOffset');
 
     try {
       this.observer = new IntersectionObserver(([entry]) => {
@@ -119,7 +108,7 @@ export class ScrollTop extends HTMLElement {
       console.error(err);
     }
 
-    this.$button.addEventListener('click', this.onClick);
+    this.$button.addEventListener('click', this._onClick);
   }
 
   disconnectedCallback() {
@@ -128,17 +117,43 @@ export class ScrollTop extends HTMLElement {
       this.observer = null;
     }
 
-    this.$button.removeEventListener('click', this.onClick);
+    this.$button.removeEventListener('click', this._onClick);
   }
 
-  attributeChangedCallback(name, _, newValue) {
-    if (name === 'visible-after') {
-      this.setContainerHeight(newValue);
+  /**
+   * https://developers.google.com/web/fundamentals/web-components/best-practices#lazy-properties
+   * This is to safe guard against cases where, for instance, a framework
+   * may have added the element to the page and set a value on one of its
+   * properties, but lazy loaded its definition. Without this guard, the
+   * upgraded element would miss that property and the instance property
+   * would prevent the class property setter from ever being called.
+   */
+  _upgradeProperty(prop) {
+    if (Object.prototype.hasOwnProperty.call(this, prop)) {
+      const value = this[prop];
+      delete this[prop];
+      this[prop] = value;
     }
   }
 
-  static get observedAttributes() {
-    return ['visible-after'];
+  _setContainerHeight(value) {
+    if (typeof value === 'string' && this.$container) {
+      this.$container.style.height = value;
+    }
+  }
+
+  _onClick(evt) {
+    evt.preventDefault();
+
+    const opts = {
+      top: Number(this.topOffset) || 0
+    };
+
+    if (this.smoothScrolling) {
+      opts.behavior = 'smooth';
+    }
+
+    document.documentElement.scrollTo(opts);
   }
 
   static defineCustomElement(elementName = 'scroll-top') {
