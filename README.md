@@ -45,11 +45,7 @@ scroll-top::part(button) {
   /* Custom styling for button */
 }
 
-scroll-top::part(button):hover {
-  /* Custom styling for button's hover state */
-}
-
-scroll-top[hidden]::part(button) {
+scroll-top::part(button button--hidden) {
   /* Custom styling for button's hidden state */
 }
 ```
