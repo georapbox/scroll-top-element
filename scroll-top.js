@@ -93,7 +93,7 @@ export class ScrollTop extends HTMLElement {
         this.hidden = entry.isIntersecting;
         this.$button.part.toggle('button--hidden', entry.isIntersecting);
 
-        this.dispatchEvent(new CustomEvent('scroll-top:visibilitychange', {
+        this.dispatchEvent(new CustomEvent('scroll-top:visibility-change', {
           bubbles: true,
           detail: {
             visible: !entry.isIntersecting

@@ -73,10 +73,10 @@ Defines/registers the custom element with the name provided. If no name is provi
 
 ### Events
 
-Every time the visibility of the element changes a `scroll-top:visibilitychange` event is dispatched from the <scroll-top> element:
+Every time the visibility of the element changes a `scroll-top:visibility-change` event is dispatched from the <scroll-top> element:
 
 ```js
-document.addEventListener('scroll-top:visibilitychange', event => {
+document.addEventListener('scroll-top:visibility-change', event => {
   console.log(event.detail); // => { visible: true }
 });
 ```
