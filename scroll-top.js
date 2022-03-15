@@ -1,3 +1,21 @@
+/**
+ * A custom element that scrolls to the top of the page.
+ * The element is not visible until the user scrolls down a specified amount of pixels.
+ *
+ * @slot (default) - The scroll to top button.
+ *
+ * @csspart button - The scroll to top button.
+ * @csspart button--hidden - The scroll to top button when is hidden.
+ *
+ * @event scroll-top:visibility-change - Emitted when the visibility of the element changes.
+ *
+ * @example
+ *
+ * <scroll-top visible-after="200px" smooth-scrolling>
+ *   Back to top
+ * </scroll-top>
+ */
+
 const template = document.createElement('template');
 
 template.innerHTML = /*template*/`
