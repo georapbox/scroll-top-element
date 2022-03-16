@@ -74,17 +74,11 @@ All properties reflect their values as HTML attributes to keep the element's DOM
 | `button` | The scroll to top button. |
 | `button--hidden` | The scroll to top button when is hidden. |
 
-### Static methods
+### Methods
 
-```js
-ScrollTop.defineCustomElement(elementName='scroll-top')
-```
-
-Defines/registers the custom element with the name provided. If no name is provided, the default name is used. The method checks if the element is already defined, hence will skip trying to redefine it.
-
-| Param | Type | Default | Description |
-| ----- | ---- | ------- | ----------- |
-| elementName | `string` | `scroll-top` | Name for the new custom element |
+| Name | Type | Description | Arguments |
+| ---- | ---- | ----------- | --------- |
+| `defineCustomElement` | Static | Defines/registers the custom element with the name provided. If no name is provided, the default name is used. The method checks if the element is already defined, hence will skip trying to redefine it. | `elementName='scroll-top'` |
 
 ### Events
 
