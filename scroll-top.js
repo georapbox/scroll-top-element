@@ -55,13 +55,10 @@ export class ScrollTop extends HTMLElement {
   }
 
   get visibleAfter() {
-    return this.getAttribute('visible-after') || '50vh';
+    return this.getAttribute('visible-after');
   }
 
   set visibleAfter(value) {
-    if (typeof value !== 'string') {
-      return;
-    }
     this.setAttribute('visible-after', value);
   }
 
@@ -78,14 +75,12 @@ export class ScrollTop extends HTMLElement {
   }
 
   get topOffset() {
-    return this.getAttribute('top-offset');
+    return Number(this.getAttribute('top-offset')) || 0;
   }
 
   set topOffset(value) {
-    if (typeof value !== 'number') {
-      return;
-    }
-    this.setAttribute('top-offset', value);
+    const numValue = Number(value) || 0;
+    this.setAttribute('top-offset', numValue > 0 ? numValue : 0);
   }
 
   static get observedAttributes() {
@@ -99,6 +94,14 @@ export class ScrollTop extends HTMLElement {
   }
 
   connectedCallback() {
+    if (!this.topOffset) {
+      this.topOffset = 0;
+    }
+
+    if (!this.visibleAfter) {
+      this.visibleAfter = '50vh';
+    }
+
     this.$button = this.shadowRoot.querySelector('button');
 
     this._setContainerHeight(this.visibleAfter);
@@ -162,7 +165,7 @@ export class ScrollTop extends HTMLElement {
     evt.preventDefault();
 
     const opts = {
-      top: Number(this.topOffset) || 0
+      top: this.topOffset
     };
 
     if (this.smoothScrolling) {
