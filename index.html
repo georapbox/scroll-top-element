@@ -190,10 +190,10 @@ scroll-top::part(button button--hidden) {
 
     document.getElementById('scroll-down').addEventListener('click', evt => {
       evt.preventDefault();
-      document.documentElement.scrollTo({
+      document.scrollingElement.scrollTo({
         top: 1000,
         behavior: 'smooth'
-      })
+      });
     });
 
     document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());

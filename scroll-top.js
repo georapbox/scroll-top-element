@@ -172,7 +172,7 @@ export class ScrollTop extends HTMLElement {
       opts.behavior = 'smooth';
     }
 
-    document.documentElement.scrollTo(opts);
+    document.scrollingElement.scrollTo(opts);
   }
 
   static defineCustomElement(elementName = 'scroll-top') {
