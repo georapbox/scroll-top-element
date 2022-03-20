@@ -1,3 +1,7 @@
+![build](https://github.com/georapbox/scroll-top-element/workflows/build/badge.svg)
+[![npm version](https://img.shields.io/npm/v/@georapbox/scroll-top-element.svg)](https://www.npmjs.com/package/@georapbox/scroll-top-element)
+[![npm license](https://img.shields.io/npm/l/@georapbox/scroll-top-element.svg)](https://www.npmjs.com/package/@georapbox/scroll-top-element)
+
 [demo]: https://georapbox.github.io/scroll-top-element/
 [support]: https://caniuse.com/#feat=custom-elementsv1
 [polyfill]: https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements
@@ -9,17 +13,20 @@ A custom element that scrolls to the top of the page. The element is not visible
 
 [API documentation](#api) &bull; [Demo][demo]
 
+## Install
+
+```sh
+$ npm install --save @georapbox/scroll-top-element
+```
+
 ## Usage
 
 ### Script
 ```js
-import { ScrollTop } from '<YOUR_PATH>/scroll-top.js';
+import { ScrollTop } from './node_modules/@georapbox/scroll-top-element/dist/scroll-top.min.js';
 
+// Manually define the element.
 ScrollTop.defineCustomElement();
-
-// Alternatively, you can use the `CustomElementRegistry.define()` method to define the element,
-// which is what the `ScrollTop.defineCustomElement()` static method uses under the hood.
-window.customElements.define('scroll-top', ScrollTop);
 ```
 
 ### Markup
@@ -34,13 +41,10 @@ window.customElements.define('scroll-top', ScrollTop);
 ```
 
 ### Style
+
+By default, the component is style-free to remain as less opinionated as possible. However, you can style the various elements of the component using the ::part() CSS pseudo-elements provided for this purpose. Below are demonstrated all available parts for styling.
+
 ```css
-/* Custom styling */
-
-scroll-top:not(:defined) {
-  /* Custom styling if element is not defined */
-}
-
 scroll-top::part(button) {
   /* Custom styling for button */
 }

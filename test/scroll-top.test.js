@@ -1,5 +1,5 @@
 import { elementUpdated, expect, fixture, fixtureCleanup, html, waitUntil } from '@open-wc/testing';
-import { ScrollTop } from './scroll-top.js';
+import { ScrollTop } from '../src/scroll-top.js';
 
 ScrollTop.defineCustomElement();
 
