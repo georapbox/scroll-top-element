@@ -1,4 +1,3 @@
-![build](https://github.com/georapbox/scroll-top-element/workflows/build/badge.svg)
 [![npm version](https://img.shields.io/npm/v/@georapbox/scroll-top-element.svg)](https://www.npmjs.com/package/@georapbox/scroll-top-element)
 [![npm license](https://img.shields.io/npm/l/@georapbox/scroll-top-element.svg)](https://www.npmjs.com/package/@georapbox/scroll-top-element)
 
