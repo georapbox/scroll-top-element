@@ -1,4 +1,5 @@
 import { elementUpdated, expect, fixture, fixtureCleanup, html, waitUntil } from '@open-wc/testing';
+import sinon from 'sinon';
 import { ScrollTop } from '../src/scroll-top.js';
 
 ScrollTop.defineCustomElement();
@@ -110,6 +111,20 @@ describe('<scroll-top>', () => {
 
     expect(el.hidden).to.be.true;
     expect(btn.part.contains('button--hidden')).to.be.true;
+  });
+
+  it('scroll-top:visibility-change event is emitted', async () => {
+    const el = await fixture(html`<scroll-top visible-after="100px"></scroll-top>`);
+    const handler = sinon.spy();
+
+    el.addEventListener('scroll-top:visibility-change', handler);
+
+    document.scrollingElement.style.height = '1000px';
+    document.scrollingElement.scrollTop = 300;
+
+    await waitUntil(() => handler.calledOnce);
+
+    expect(handler).to.have.been.calledOnce;
   });
 
   it('scrolls to top of page asynchronously', async () => {
