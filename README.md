@@ -5,6 +5,7 @@
 [support]: https://caniuse.com/#feat=custom-elementsv1
 [polyfill]: https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements
 [license]: https://georapbox.mit-license.org/@2022
+[changelog]: https://github.com/georapbox/scroll-top-element/blob/main/CHANGELOG.md
 
 # &lt;scroll-top&gt; element
 
@@ -26,6 +27,12 @@ import { ScrollTop } from './node_modules/@georapbox/scroll-top-element/dist/scr
 
 // Manually define the element.
 ScrollTop.defineCustomElement();
+```
+
+Alternatively, you can import the automatically defined custom element.
+
+```js
+import './node_modules/@georapbox/scroll-top-element/dist/scroll-top-defined.min.js';
 ```
 
 ### Markup
@@ -92,6 +99,10 @@ document.addEventListener('scroll-top:visibility-change', evt => {
   console.log(evt.detail); // => { visible: true }
 });
 ```
+
+## Changelog
+
+For API updates and breaking changes, check the [CHANGELOG][changelog].
 
 ## Browser support
 

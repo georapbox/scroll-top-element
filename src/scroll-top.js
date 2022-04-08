@@ -12,20 +12,17 @@ template.innerHTML = html`
       right: 0;
       width: 1px;
     }
-
     :host button {
       position: fixed;
       bottom: 16px;
       right: 16px;
       cursor: pointer;
     }
-
     :host([hidden]) button {
       opacity: 0;
       visibility: hidden;
     }
   </style>
-
   <button type="button" part="button"><slot>Scroll to top</slot></button>
 `;
 
