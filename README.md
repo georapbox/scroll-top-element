@@ -7,7 +7,7 @@
 [license]: https://georapbox.mit-license.org/@2022
 [changelog]: https://github.com/georapbox/scroll-top-element/blob/main/CHANGELOG.md
 
-# &lt;scroll-top&gt; element
+# &lt;scroll-top&gt;
 
 A custom element that scrolls to the top of the page. The element is not visible until the user scrolls down a specified amount of pixels. [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) API is used under the hood to detect when the element will be visible.
 
