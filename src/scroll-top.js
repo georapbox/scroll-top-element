@@ -111,6 +111,7 @@ class ScrollTop extends HTMLElement {
 
         this.dispatchEvent(new CustomEvent('scroll-top:visibility-change', {
           bubbles: true,
+          composed: true,
           detail: {
             visible: !entry.isIntersecting
           }
