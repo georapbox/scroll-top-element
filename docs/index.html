@@ -8,26 +8,28 @@
   <meta name="description" content="A custom element that scrolls to the top of the page.">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="stylesheet" href="lib/highlight/highlight-github-dark.min.css">
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="styles/water.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="lib/highlight/highlight.min.js" defer></script>
+  <script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
+  <script type="module" src="scripts/main.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>&lt;scroll-top&gt;</h1>
+  <h1>&lt;scroll-top&gt;</h1>
 
-    <p>A custom element that scrolls to the top of the page. The element is not visible until the user scrolls down a specified amount of pixels.</p>
+  <p>A custom element that scrolls to the top of the page. The element is not visible until the user scrolls down a specified amount of pixels.</p>
 
-    <h2>Example</h2>
+  <h2>Example</h2>
 
-    <p><a href="#" id="scroll-down">Scroll down</a> to reveal the "Back to Top" button.</p>
+  <p><a href="#" id="scroll-down">Scroll down</a> to reveal the "Back to Top" button.</p>
 
-    <h3>HTML</h3>
+  <h3>HTML</h3>
 <pre><code class="language-html">&lt;scroll-top visible-after="200px" smooth-scrolling&gt;
   Back to top
 &lt;/scroll-top&gt;</code></pre>
 
-    <h3>CSS</h3>
+  <h3>CSS</h3>
 <pre><code class="language-css">/* Customize styling */
-
 scroll-top::part(button) {
   /* Custom stylings for button */
   background-color: #0d6efd;
@@ -51,25 +53,20 @@ scroll-top::part(button button--hidden) {
 }
 </code></pre>
 
-    <h2>Source</h2>
+  <h2>Source</h2>
 
-    <p>
-      Source code can be found in <a href="https://github.com/georapbox/scroll-top-element" target="_blank" rel="noreferrer noopener">Github repository</a>.
-    </p>
+  <p>
+    Source code can be found in <a href="https://github.com/georapbox/scroll-top-element" target="_blank" rel="noreferrer noopener">Github repository</a>.
+  </p>
 
-    <h2>License</h2>
+  <h2>License</h2>
 
-    <p>
-      <a href="https://georapbox.mit-license.org/@2022" target="_blank" rel="noreferrer noopener">The MIT License (MIT)</a>
-    </p>
-  </div>
+  <p>
+    <a href="https://georapbox.mit-license.org/@2022" target="_blank" rel="noreferrer noopener">The MIT License (MIT)</a>
+  </p>
 
   <scroll-top visible-after="300px" smooth-scrolling>
     Back to top &uarr;
   </scroll-top>
-
-  <script type="module" src="main.js"></script>
-  <script src="lib/highlight/highlight.min.js" defer></script>
-  <script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
 </body>
 </html>
