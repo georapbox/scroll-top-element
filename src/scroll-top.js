@@ -26,27 +26,14 @@ template.innerHTML = html`
   <button type="button" part="button"><slot>Scroll to top</slot></button>
 `;
 
-/**
- * @slot (default) - The scroll to top button.
- *
- * @csspart button - The scroll to top button.
- * @csspart button--hidden - The scroll to top button when is hidden.
- *
- * @event scroll-top:visibility-change - Emitted when the visibility of the element changes.
- *
- * @example
- *
- * <scroll-top visible-after="200px" smooth-scrolling>
- *   Back to top
- * </scroll-top>
- */
 class ScrollTop extends HTMLElement {
+  #buttonEl;
+
   constructor() {
     super();
 
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this._onClick = this._onClick.bind(this);
   }
 
   get visibleAfter() {
@@ -82,13 +69,17 @@ class ScrollTop extends HTMLElement {
     return ['visible-after'];
   }
 
-  attributeChangedCallback(name, _, newValue) {
+  attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'visible-after') {
-      this._setContainerHeight(newValue);
+      this.#setContainerHeight(newValue);
     }
   }
 
   connectedCallback() {
+    this.#upgradeProperty('visibleAfter');
+    this.#upgradeProperty('smoothScrolling');
+    this.#upgradeProperty('topOffset');
+
     if (!this.topOffset) {
       this.topOffset = 0;
     }
@@ -97,17 +88,14 @@ class ScrollTop extends HTMLElement {
       this.visibleAfter = '50vh';
     }
 
-    this.$button = this.shadowRoot.querySelector('button');
+    this.#buttonEl = this.shadowRoot.querySelector('button');
 
-    this._setContainerHeight(this.visibleAfter);
-    this._upgradeProperty('visibleAfter');
-    this._upgradeProperty('smoothScrolling');
-    this._upgradeProperty('topOffset');
+    this.#setContainerHeight(this.visibleAfter);
 
     try {
       this.observer = new IntersectionObserver(([entry]) => {
         this.hidden = entry.isIntersecting;
-        this.$button.part.toggle('button--hidden', entry.isIntersecting);
+        this.#buttonEl.part.toggle('button--hidden', entry.isIntersecting);
 
         this.dispatchEvent(new CustomEvent('scroll-top:visibility-change', {
           bubbles: true,
@@ -123,7 +111,7 @@ class ScrollTop extends HTMLElement {
       console.error(err);
     }
 
-    this.$button.addEventListener('click', this._onClick);
+    this.#buttonEl.addEventListener('click', this.#onClick);
   }
 
   disconnectedCallback() {
@@ -132,7 +120,7 @@ class ScrollTop extends HTMLElement {
       this.observer = null;
     }
 
-    this.$button.removeEventListener('click', this._onClick);
+    this.#buttonEl.removeEventListener('click', this.#onClick);
   }
 
   /**
@@ -143,7 +131,7 @@ class ScrollTop extends HTMLElement {
    * upgraded element would miss that property and the instance property
    * would prevent the class property setter from ever being called.
    */
-  _upgradeProperty(prop) {
+  #upgradeProperty(prop) {
     if (Object.prototype.hasOwnProperty.call(this, prop)) {
       const value = this[prop];
       delete this[prop];
@@ -151,13 +139,13 @@ class ScrollTop extends HTMLElement {
     }
   }
 
-  _setContainerHeight(value) {
+  #setContainerHeight(value) {
     if (typeof value === 'string') {
       this.style.height = value;
     }
   }
 
-  _onClick(evt) {
+  #onClick = evt => {
     evt.preventDefault();
 
     const opts = {
@@ -169,7 +157,7 @@ class ScrollTop extends HTMLElement {
     }
 
     document.scrollingElement.scrollTo(opts);
-  }
+  };
 
   static defineCustomElement(elementName = 'scroll-top') {
     if (typeof window !== 'undefined' && !window.customElements.get(elementName)) {

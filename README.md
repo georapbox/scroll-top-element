@@ -23,7 +23,7 @@ $ npm install --save @georapbox/scroll-top-element
 
 ### Script
 ```js
-import { ScrollTop } from './node_modules/@georapbox/scroll-top-element/dist/scroll-top.min.js';
+import { ScrollTop } from './node_modules/@georapbox/scroll-top-element/dist/scroll-top.js';
 
 // Manually define the element.
 ScrollTop.defineCustomElement();
@@ -32,7 +32,7 @@ ScrollTop.defineCustomElement();
 Alternatively, you can import the automatically defined custom element.
 
 ```js
-import './node_modules/@georapbox/scroll-top-element/dist/scroll-top-defined.min.js';
+import './node_modules/@georapbox/scroll-top-element/dist/scroll-top-defined.js';
 ```
 
 ### Markup
