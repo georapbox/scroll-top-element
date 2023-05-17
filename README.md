@@ -2,8 +2,6 @@
 [![npm license](https://img.shields.io/npm/l/@georapbox/scroll-top-element.svg)](https://www.npmjs.com/package/@georapbox/scroll-top-element)
 
 [demo]: https://georapbox.github.io/scroll-top-element/
-[support]: https://caniuse.com/#feat=custom-elementsv1
-[polyfill]: https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements
 [license]: https://georapbox.mit-license.org/@2022
 [changelog]: https://github.com/georapbox/scroll-top-element/blob/main/CHANGELOG.md
 
@@ -103,15 +101,6 @@ document.addEventListener('scroll-top:visibility-change', evt => {
 ## Changelog
 
 For API updates and breaking changes, check the [CHANGELOG][changelog].
-
-## Browser support
-
-Browsers without native [custom element support][support] require a [polyfill][polyfill].
-
-- Firefox
-- Chrome
-- Microsoft Edge
-- Safari
 
 ## License
 

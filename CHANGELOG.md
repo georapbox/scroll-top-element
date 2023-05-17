@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.1 (2023-05-17)
+
+- Fix a bug that caused the `scroll-top` element to endlessly toggle its state between visible and hidden when not intersecting the viewport.
+- Ensure that the element is by default hidden to avoid a flash of the element when the page loads.
+- Update dev dependencies.
+
 ## v2.0.0 (2022-11-18)
 
 - Refactor to use private class fields.

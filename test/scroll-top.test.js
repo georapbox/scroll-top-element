@@ -89,7 +89,6 @@ describe('<scroll-top>', () => {
 
     await elementUpdated(el);
 
-    expect(el.hidden).to.be.true;
     expect(btn.part.contains('button--hidden')).to.be.true;
   });
 
@@ -102,14 +101,12 @@ describe('<scroll-top>', () => {
 
     await elementUpdated(el);
 
-    expect(el.hidden).to.be.false;
     expect(btn.part.contains('button--hidden')).to.be.false;
 
     btn.click();
 
     await elementUpdated(el);
 
-    expect(el.hidden).to.be.true;
     expect(btn.part.contains('button--hidden')).to.be.true;
   });
 

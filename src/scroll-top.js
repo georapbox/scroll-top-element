@@ -3,28 +3,33 @@ const template = document.createElement('template');
 template.innerHTML = /* html */`
   <style>
     :host {
-      all: initial;
       display: block;
       position: absolute;
       top: 0;
       right: 0;
-      width: 1px;
+      width: 0;
     }
-    :host button {
+
+    .button {
       position: fixed;
       bottom: 16px;
       right: 16px;
       cursor: pointer;
     }
-    :host([hidden]) button {
+
+    .button--hidden {
       opacity: 0;
       visibility: hidden;
     }
   </style>
-  <button type="button" part="button"><slot>Scroll to top</slot></button>
+
+  <button type="button" class="button button--hidden" part="button button--hidden">
+    <slot>Scroll to top</slot>
+  </button>
 `;
 
 class ScrollTop extends HTMLElement {
+  #observer;
   #buttonEl;
 
   constructor() {
@@ -91,8 +96,8 @@ class ScrollTop extends HTMLElement {
     this.#setContainerHeight(this.visibleAfter);
 
     try {
-      this.observer = new IntersectionObserver(([entry]) => {
-        this.hidden = entry.isIntersecting;
+      this.#observer = new IntersectionObserver(([entry]) => {
+        this.#buttonEl.classList.toggle('button--hidden', entry.isIntersecting);
         this.#buttonEl.part.toggle('button--hidden', entry.isIntersecting);
 
         this.dispatchEvent(new CustomEvent('scroll-top:visibility-change', {
@@ -104,7 +109,7 @@ class ScrollTop extends HTMLElement {
         }));
       });
 
-      this.observer.observe(this);
+      this.#observer.observe(this);
     } catch (err) {
       console.error(err);
     }
@@ -113,28 +118,12 @@ class ScrollTop extends HTMLElement {
   }
 
   disconnectedCallback() {
-    if (this.observer) {
-      this.observer.disconnect();
-      this.observer = null;
+    if (this.#observer) {
+      this.#observer.disconnect();
+      this.#observer = null;
     }
 
     this.#buttonEl.removeEventListener('click', this.#onClick);
-  }
-
-  /**
-   * https://developers.google.com/web/fundamentals/web-components/best-practices#lazy-properties
-   * This is to safe guard against cases where, for instance, a framework
-   * may have added the element to the page and set a value on one of its
-   * properties, but lazy loaded its definition. Without this guard, the
-   * upgraded element would miss that property and the instance property
-   * would prevent the class property setter from ever being called.
-   */
-  #upgradeProperty(prop) {
-    if (Object.prototype.hasOwnProperty.call(this, prop)) {
-      const value = this[prop];
-      delete this[prop];
-      this[prop] = value;
-    }
   }
 
   #setContainerHeight(value) {
@@ -156,6 +145,22 @@ class ScrollTop extends HTMLElement {
 
     document.scrollingElement.scrollTo(opts);
   };
+
+  /**
+   * https://developers.google.com/web/fundamentals/web-components/best-practices#lazy-properties
+   * This is to safe guard against cases where, for instance, a framework
+   * may have added the element to the page and set a value on one of its
+   * properties, but lazy loaded its definition. Without this guard, the
+   * upgraded element would miss that property and the instance property
+   * would prevent the class property setter from ever being called.
+   */
+  #upgradeProperty(prop) {
+    if (Object.prototype.hasOwnProperty.call(this, prop)) {
+      const value = this[prop];
+      delete this[prop];
+      this[prop] = value;
+    }
+  }
 
   static defineCustomElement(elementName = 'scroll-top') {
     if (typeof window !== 'undefined' && !window.customElements.get(elementName)) {

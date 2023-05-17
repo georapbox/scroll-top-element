@@ -16,7 +16,7 @@ scroll-top::part(button) {
   font-size: 1rem;
   transition: all 0.3s ease-in-out;
   -webkit-appearance: none;
-  -moz-appearance: none;
+  appearance: none;
 }
 
 scroll-top::part(button):hover {
