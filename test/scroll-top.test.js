@@ -4,7 +4,7 @@ import { ScrollTop } from '../src/scroll-top.js';
 
 ScrollTop.defineCustomElement();
 
-describe('<scroll-top>', () => {
+describe('scroll-top', () => {
   it('passes accessibility test', async () => {
     const el = await fixture(html`<scroll-top></scroll-top>`);
 
@@ -15,13 +15,13 @@ describe('<scroll-top>', () => {
     const el = await fixture(html`<scroll-top></scroll-top>`);
 
     expect(el.visibleAfter).to.equal('50vh');
-    expect(el.getAttribute('visible-after')).to.equal('50vh');
+    expect(el.getAttribute('visible-after')).to.be.null;
 
     expect(el.smoothScrolling).to.be.false;
     expect(el.getAttribute('smooth-scrolling')).to.be.null;
 
     expect(el.topOffset).to.equal(0);
-    expect(el.getAttribute('top-offset')).to.equal('0');
+    expect(el.getAttribute('top-offset')).to.be.null;
   });
 
   it('change default properties', async () => {
@@ -92,7 +92,7 @@ describe('<scroll-top>', () => {
     expect(btn.part.contains('button--hidden')).to.be.true;
   });
 
-  it('toggle element\'s visibility depending on scroll distance', async () => {
+  it("toggle element's visibility depending on scroll distance", async () => {
     const el = await fixture(html`<scroll-top visible-after="100px"></scroll-top>`);
     const btn = el.shadowRoot.querySelector('button');
 

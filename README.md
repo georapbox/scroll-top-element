@@ -2,7 +2,7 @@
 [![npm license](https://img.shields.io/npm/l/@georapbox/scroll-top-element.svg)](https://www.npmjs.com/package/@georapbox/scroll-top-element)
 
 [demo]: https://georapbox.github.io/scroll-top-element/
-[license]: https://georapbox.mit-license.org/@2022
+[license]: https://github.com/georapbox/scroll-top-element/blob/main/LICENSE
 [changelog]: https://github.com/georapbox/scroll-top-element/blob/main/CHANGELOG.md
 
 # &lt;scroll-top&gt;
@@ -46,7 +46,7 @@ import './node_modules/@georapbox/scroll-top-element/dist/scroll-top-defined.js'
 
 ### Style
 
-By default, the component is style-free to remain as less opinionated as possible. However, you can style the various elements of the component using the ::part() CSS pseudo-elements provided for this purpose. Below are demonstrated all available parts for styling.
+By default, the component is style-free to remain as less opinionated as possible. However, you can style the various elements of the component using [CSS Parts](#css-parts) provided for this purpose.
 
 ```css
 scroll-top::part(button) {
@@ -61,13 +61,11 @@ scroll-top::part(button button--hidden) {
 ## API
 
 ### Properties/Attributes
-| Property | Attribute | Type | Default | Description |
-| -------- | --------- | ---- | ------- | ----------  |
-| `visibleAfter` | `visible-after` | String | `"50vh"` | Optional. It defines the distance the user needs to scroll from top so that the button is revealed. The value provided must have a valid absolute or relative length unit, eg `px`, `rem`, `vh`, etc. |
-| `smoothScrolling` | `smooth-scrolling` | Boolean | `false` | Optional. Specifies whether the scrolling should animate smoothly, or happen instantly in a single jump which is the default behavior. |
-| `topOffset` | `top-offset` | Number | `0` | Optional. Specifies the number of pixels along the Y axis to scroll the window. |
-
-All properties reflect their values as HTML attributes to keep the element's DOM representation in sync with its JavaScript state.
+| Name | Reflects | Type | Required | Default | Description |
+| ---- | -------- | ---- | -------- | ------- | ----------- |
+| `visibleAfter`<br>*`visible-after`* | ✓ | String | - | `"50vh"` | The distance the user needs to scroll from top so that the button is revealed. The value provided must have a valid absolute or relative length unit, eg `px`, `rem`, `vh`, etc. |
+| `smoothScrolling`<br>*``smooth-scrolling``* | ✓ | Boolean | - | `false` | Whether the scrolling should animate smoothly, or happen instantly in a single jump which is the default behavior. |
+| `topOffset`<br>*`top-offset`* | ✓ | Number | - | `0` | The offset (in pixels) from the top of the page when scrolling to the top. |
 
 ### Slots
 
@@ -90,17 +88,60 @@ All properties reflect their values as HTML attributes to keep the element's DOM
 
 ### Events
 
-`scroll-top:visibility-change` - Emitted when the visibility of the element changes.
-
-```js
-document.addEventListener('scroll-top:visibility-change', evt => {
-  console.log(evt.detail); // => { visible: true }
-});
-```
+| Name | Description | Event Detail |
+| ---- | ----------- | ------------ |
+| `scroll-top:visibility-change` | Emitted when the visibility of the element changes. | `{ visible: boolean }` |
 
 ## Changelog
 
 For API updates and breaking changes, check the [CHANGELOG][changelog].
+
+## Development setup
+
+### Prerequisites
+
+The project requires `Node.js` and `npm` to be installed on your environment. Preferrably, use [nvm](https://github.com/nvm-sh/nvm) Node Version Manager and use the version of Node.js specified in the `.nvmrc` file by running `nvm use`.
+
+### Install dependencies
+
+Install the project dependencies by running the following command.
+
+```sh
+npm install
+```
+
+### Build for development
+
+Watch for changes and start a development server by running the following command.
+
+```sh
+npm start
+```
+
+### Linting
+
+Lint the code by running the following command.
+
+```sh
+npm run lint
+```
+
+### Testing
+
+Run the tests by running any of the following commands.
+
+```sh
+npm test
+npm run test:watch # watch mode
+```
+
+### Build for production
+
+Create a production build by running the following command.
+
+```sh
+npm run build
+```
 
 ## License
 

@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v2.0.2 (2024-08-26)
+
+- Add type definitions for TypeScript.
+- Replace parcel with esbuild for bundling.
+- Update ESLint to use flat configuration.
+- Use Prettier for code formatting.
+- Update dev dependencies.
+
 ## v2.0.1 (2023-05-17)
 
 - Fix a bug that caused the `scroll-top` element to endlessly toggle its state between visible and hidden when not intersecting the viewport.
