@@ -5,6 +5,11 @@ import { ScrollTop } from '../src/scroll-top.js';
 ScrollTop.defineCustomElement();
 
 describe('scroll-top', () => {
+  afterEach(() => {
+    fixtureCleanup();
+    sinon.restore();
+  });
+
   it('passes accessibility test', async () => {
     const el = await fixture(html`<scroll-top></scroll-top>`);
 
@@ -121,7 +126,7 @@ describe('scroll-top', () => {
 
     await waitUntil(() => handler.calledOnce);
 
-    expect(handler).to.have.been.calledOnce;
+    sinon.assert.calledOnce(handler);
   });
 
   it('scrolls to top of page asynchronously', async () => {
@@ -137,9 +142,5 @@ describe('scroll-top', () => {
     await waitUntil(() => document.scrollingElement.scrollTop === 0);
 
     expect(document.scrollingElement.scrollTop).to.equal(0);
-  });
-
-  afterEach(() => {
-    fixtureCleanup();
   });
 });
